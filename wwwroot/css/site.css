@@ -1,0 +1,325 @@
+﻿/*  Base Styling */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #e8f5e9, #b9f6ca);
+    background-attachment: fixed;
+    background-size: cover;
+    color: #2b2b2b;
+    margin-bottom: 100px; /* makes space for sticky footer */
+}
+
+/* Welcome Text */
+.welcome-text {
+    animation: pop-in 1s ease-out;
+    font-size: 4.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 50px;
+    color: #3c763d; /* Deep Green */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes pop-in {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes sway {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes floatFlower {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Floating Flowers */
+.flower-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.floating-flower {
+    position: absolute;
+    animation: floatFlower 6s infinite alternate ease-in-out;
+}
+
+/* Leaf Sway Animation */
+.leaf {
+    display: inline-block;
+    animation: sway 3s infinite;
+    font-size: 2.5rem;
+    margin: 0 10px;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #6dbb66;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #388E3C;
+    font-size: 1.2rem;
+}
+.navbar-nav .nav-link {
+    margin-right: 6rem; /* bigger spacing */
+}
+
+
+.navbar a {
+    color: lightgoldenrodyellow;
+    text-decoration: none;
+    padding: 10px;
+    transition: all 0.3s;
+    font-size: 1.2rem;
+}
+
+        .navbar a:hover {
+            background-color: #a5d6a7;
+            border-radius: 5px;
+
+        }
+
+    .navbar .logout-link:hover {
+        background-color: #ec8a83;
+        color: white;
+        border-radius: 5px;
+    }
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+/*  Button Styling */
+.btn-green {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+    .btn-green:hover {
+        background-color: #77c878;
+    }
+
+/* Garden Box */
+.garden-box {
+    background-color: #eafbea;
+    border: 2px solid #a5d6a7;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sticky Footer */
+.sticky-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.footer-grass p {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/*  Page-specific Adjustments */
+body.history-page {
+    padding-bottom: 150px; /* Extra space for history page */
+}
+
+.canvas-container, .chart-wrapper {
+    padding-bottom: 20px;
+}
+
+/* 👤 Profile Card */
+.profile-card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+    .profile-card:hover {
+        transform: translateY(-5px);
+    }
+
+/* Badge Styling */
+.badge {
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 18px;
+}
+
+.badge-locked {
+    opacity: 0.5;
+}
+
+/* Text Background (4 Welcome screen) */
+.text-background {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 60px;
+    display: inline-block;
+}
+
+/*  Welcome Content Higher Z-Index */
+.welcome-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+@keyframes pop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 🌿 Mood Garden Styling */
+.garden-container {
+    background: linear-gradient(to top, #a0d995, #d9f2e6);
+    border: 2px dashed #70a270;
+    border-radius: 20px;
+    padding: 40px 20px 80px 20px;
+    min-height: 250px;
+    position: relative;
+}
+
+.emoji-garden {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.flower {
+    font-size: 2.2rem;
+    animation: pop 0.5s ease;
+}
+
+.grass-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    background: linear-gradient(to right, #6dbb64, #77c878);
+    border-top: 3px solid #4c8c4a;
+    border-radius: 0 0 20px 20px;
+    margin: 0;
+    padding: 0;
+    overflow: visible; /* Allows leaves to stick out */
+}
+
+/* Leaves Styling */
+.leaf {
+    position: absolute;
+    top: -30px;
+    font-size: 1.8rem;
+    animation: sway 4s infinite alternate;
+}
+
+.leaf1 {
+    left: 10%;
+}
+
+.leaf2 {
+    left: 30%;
+}
+
+.leaf3 {
+    left: 50%;
+}
+
+.leaf4 {
+    left: 70%;
+}
+
+.leaf5 {
+    left: 90%;
+}
+
+/* Pop animation (already added earlier) */
+@keyframes pop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Sway animation (already added earlier if needed) */
+@keyframes sway {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(5deg);
+    }
+}
