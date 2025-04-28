@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Settings";
+}
+
+<div class="container mt-5">
+    <h2>Settings ⚙️</h2>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+    }
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+    }
+
+
+    <form asp-action="ChangePassword" method="post">
+        <div class="mb-3">
+            <label for="currentPassword" class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="newPassword" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Change Password</button>
+    </form>
+
+
+    <form asp-action="DeleteAccount" method="post" class="mt-4" onsubmit="return confirmDelete();">
+        <button type="submit" class="btn btn-danger">Delete My Account</button>
+    </form>
+
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete your account? This action cannot be undone!");
+        }
+    </script>
+
+
+
+
+
+</div>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<RootedWeb.Models.TaskItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary me-2">➕ Add Task</a>
+    <a asp-action="Completed" class="btn btn-outline-secondary">✅ Completed Tasks</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mood)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.IsComplete)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mood)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.IsComplete)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TaskID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TaskID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TaskID">Delete</a>
+
+
+                    @if (!item.IsComplete)
+                    {
+                        <form asp-action="Complete" asp-route-id="@item.TaskID" method="post" style="display:inline">
+                            <button type="submit" class="btn btn-sm btn-success">Mark Complete</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Completed</span>
+                    }
+
+
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

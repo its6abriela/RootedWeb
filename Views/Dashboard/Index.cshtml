@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-5">
+    <h2>Welcome, @ViewBag.Username! 👋</h2>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Tasks Completed</h5>
+                    <p class="card-text">@ViewBag.TasksCompleted</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Current Streak</h5>
+                    <p class="card-text">@ViewBag.CurrentStreak days</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Quick Actions</h5>
+                    <div class="mt-5 text-center">
+                        <h4>🌟 Motivational Quote of the Day 🌟</h4>
+                        <p class="lead">@ViewBag.MotivationalQuote</p>
+                    </div>
+
+                    <a href="/Dashboard/Settings" class="btn btn-warning mt-3">Settings</a>
+                    <a href="/TaskItems/Create" class="btn btn-primary mb-2">Add Task</a><br />
+                    <a href="/MoodCheck/Index" class="btn btn-success mb-2">Mood Check-In</a><br />
+                    <a href="/Garden/Index" class="btn btn-info">View Garden</a>
+                    <a href="/Dashboard/Profile" class="btn btn-outline-primary mt-3">My Profile</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

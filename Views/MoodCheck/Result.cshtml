@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Your Motivation";
+}
+
+<h2>Your Check-In</h2>
+
+<p><strong>Mood:</strong> @ViewBag.Mood</p>
+<p><strong>Energy Level:</strong> @ViewBag.EnergyLevel</p>
+
+<div class="alert alert-info mt-4">
+    <h4>Today's Motivation:</h4>
+    <p>@ViewBag.Motivation</p>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Check-In Again</a>

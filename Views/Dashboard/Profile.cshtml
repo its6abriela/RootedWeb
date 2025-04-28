@@ -1,0 +1,195 @@
+﻿@model RootedWeb.Models.User
+
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container mt-5">
+    <h2>Welcome, @Model.Name! 👋</h2>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card text-center profile-card">
+                <div class="card-body">
+                    <h5 class="card-title">👤 Username</h5>
+                    <p class="card-text">@Model.Username</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center profile-card">
+                <div class="card-body">
+                    <h5 class="card-title">📧 Email</h5>
+                    <p class="card-text">@Model.Email</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center profile-card">
+                <div class="card-body">
+                    <h5 class="card-title">✅ Tasks Completed</h5>
+                    <p class="card-text">@ViewBag.TasksCompleted</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="card text-center profile-card">
+                <div class="card-body">
+                    <h5 class="card-title">🔥 Current Streak</h5>
+                    <p class="card-text">@ViewBag.CurrentStreak days</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- motivational quote -->
+    <div class="mt-5 text-center" style="animation: fadeIn 2s;">
+        <h4>🌟 Motivational Quote of the Day 🌟</h4>
+        <p class="lead">@ViewBag.MotivationalQuote</p>
+    </div>
+
+    <div class="mt-5 text-center">
+        <h4>🏆 Your Achievements</h4>
+
+        @if (ViewBag.Badges != null)
+        {
+            foreach (var badge in (List<RootedWeb.Controllers.Badge>)ViewBag.Badges)
+            {
+                if (badge.IsUnlocked)
+                {
+                    <span class="badge bg-success fs-5 m-2" title="Unlocked!">@badge.Name</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary fs-5 m-2" style="opacity: 0.5;" title="@badge.UnlockTip">@badge.Name</span>
+                }
+            }
+        }
+       
+        @if (ViewBag.TreePlantingMessage != null)
+        {
+            <div class="alert alert-success mt-4">
+                @ViewBag.TreePlantingMessage
+            </div>
+        }
+
+        <!-- settings Section -->
+    <div class="mt-5">
+        <h2>⚙️ Settings</h2>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+        }
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+        }
+
+        <div class="accordion" id="settingsAccordion">
+
+            <!-- Change Password Section -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Change Password
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#settingsAccordion">
+                    <div class="accordion-body">
+                        <form asp-action="ChangePassword" method="post" onsubmit="return confirm('Are you sure you want to change your password?');">
+                            <div class="mb-3">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Account Section -->
+            <div class="accordion-item mt-3">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Delete My Account
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#settingsAccordion">
+                    <div class="accordion-body">
+                        <form asp-action="DeleteAccount" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
+                            <button type="submit" class="btn btn-danger">Delete My Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Edit Profile Section -->
+        <div class="accordion-item mt-3">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Edit My Profile
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#settingsAccordion">
+                <div class="accordion-body">
+                    <form asp-action="EditProfile" method="post">
+                        <div class="mb-3">
+                            <label for="newUsername" class="form-label">New Username</label>
+                            <input type="text" class="form-control" id="newUsername" name="newUsername" required value="@Model.Username">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="newEmail" class="form-label">New Email</label>
+                            <input type="email" class="form-control" id="newEmail" name="newEmail" required value="@Model.Email">
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <script>
+        window.onload = function() {
+            alert("@ViewBag.SuccessMessage");
+        }
+    </script>
+}
