@@ -4,7 +4,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Task To Complete </h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+    @TempData.Remove("SuccessMessage")
+}
+
 
 <p>
     <a asp-action="Create" class="btn btn-primary me-2">➕ Add Task</a>
@@ -21,9 +30,7 @@
                 @Html.DisplayNameFor(model => model.Mood)
             </th>
             
-            <th>
-                @Html.DisplayNameFor(model => model.IsComplete)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -37,9 +44,6 @@
                 @Html.DisplayFor(modelItem => item.Mood)
             </td>
             
-            <td>
-                @Html.DisplayFor(modelItem => item.IsComplete)
-            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TaskID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.TaskID">Details</a> |
@@ -57,7 +61,7 @@
                         <span class="badge bg-secondary">Completed</span>
                     }
 
-
+                 
 
             </td>
         </tr>

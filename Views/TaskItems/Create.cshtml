@@ -4,9 +4,8 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>TaskItem</h4>
+<h4>Add a new task</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -26,15 +25,24 @@
                     <input type="hidden" id="selectedMood" name="Mood" />
 
                     @foreach (var mood in new[] {
-                    new { Name = "Awful", Emoji = "🤢" },
-                    new { Name = "Angry", Emoji = "😠" },
-                    new { Name = "Anxious", Emoji = "😟" },
-                    new { Name = "Meh", Emoji = "😐" },
-                    new { Name = "Tired", Emoji = "😴" },
-                    new { Name = "Calm", Emoji = "😌" },
+                    new { Name = "Energetic", Emoji = "⚡" },
+                    new { Name = "Excited", Emoji = "🤩" },
+                    new { Name = "Proud", Emoji = "🏆" },
+                    new { Name = "Inspired", Emoji = "✨" },
+                    new { Name = "Motivated", Emoji = "🔥" },
                     new { Name = "Happy", Emoji = "😊" },
+                    new { Name = "Content", Emoji = "🙂" },
+                    new { Name = "Hopeful", Emoji = "🌱" },
                     new { Name = "Focused", Emoji = "🎯" },
-                    new { Name = "Energetic", Emoji = "⚡" }
+                    new { Name = "Calm", Emoji = "😌" },
+                    new { Name = "Tired", Emoji = "😴" },
+                    new { Name = "Meh", Emoji = "😐" },
+                    new { Name = "Anxious", Emoji = "😟" },
+                    new { Name = "Frustrated", Emoji = "😤" },
+                    new { Name = "Angry", Emoji = "😠" },
+                    new { Name = "Sad", Emoji = "😢" },
+                    new { Name = "Awful", Emoji = "🤢" }
+
                     })
                     {
                         <button type="button" class="btn btn-outline-primary mood-option"
@@ -52,20 +60,30 @@
 
 
             <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsComplete" /> @Html.DisplayNameFor(model => model.IsComplete)
+                <label class="form-check-label completed-label">
+                    <input class="form-check-input completed-checkbox" asp-for="IsComplete" />
+                    <span class="custom-checkmark"></span>
+                    Completed
                 </label>
             </div>
-            <div class="form-group">
+
+          <!--  <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+              </div> -->
+            <div class="d-flex gap-3 mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-controller="TaskItems" asp-action="Index" class="btn btn-outline-secondary">Back to Task List</a>
             </div>
+
         </form>
     </div>
 </div>
 
+<!--
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="TaskItems" asp-action="Index" class="btn btn-outline-secondary">Back to Task List</a>
 </div>
+-->
 
 @section Scripts {
     @{

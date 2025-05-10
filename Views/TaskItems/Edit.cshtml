@@ -1,45 +1,102 @@
 ﻿@model RootedWeb.Models.TaskItem
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Task";
 }
 
-<h1>Edit</h1>
-
-<h4>TaskItem</h4>
+<h4>Edit Task</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TaskID" />
+
+            <!-- Task Title -->
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">Task Title</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
+
+            <!-- Mood Selection -->
             <div class="form-group">
-                <label asp-for="Mood" class="control-label"></label>
-                <input asp-for="Mood" class="form-control" />
+                <label class="control-label">How are you feeling about this task?</label>
+                <div class="d-flex flex-wrap gap-3">
+                    <input type="hidden" id="selectedMood" name="Mood" value="@Model.Mood" />
+
+                    @foreach (var mood in new[] {
+                    new { Name = "Energetic", Emoji = "⚡" },
+                    new { Name = "Excited", Emoji = "🤩" },
+                    new { Name = "Proud", Emoji = "🏆" },
+                    new { Name = "Inspired", Emoji = "✨" },
+                    new { Name = "Motivated", Emoji = "🔥" },
+                    new { Name = "Happy", Emoji = "😊" },
+                    new { Name = "Content", Emoji = "🙂" },
+                    new { Name = "Hopeful", Emoji = "🌱" },
+                    new { Name = "Focused", Emoji = "🎯" },
+                    new { Name = "Calm", Emoji = "😌" },
+                    new { Name = "Tired", Emoji = "😴" },
+                    new { Name = "Meh", Emoji = "😐" },
+                    new { Name = "Anxious", Emoji = "😟" },
+                    new { Name = "Frustrated", Emoji = "😤" },
+                    new { Name = "Angry", Emoji = "😠" },
+                    new { Name = "Sad", Emoji = "😢" },
+                    new { Name = "Awful", Emoji = "🤢" }
+                    })
+                    {
+                        <button type="button" class="btn btn-outline-primary mood-option @(Model.Mood == mood.Name ? "active" : "")"
+                                data-mood="@mood.Name">
+                            <span style="font-size: 1.5rem;">@mood.Emoji</span><br />
+                            @mood.Name
+                        </button>
+                    }
+                </div>
                 <span asp-validation-for="Mood" class="text-danger"></span>
             </div>
-            
+
+            <!-- Completion Status -->
             <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsComplete" /> @Html.DisplayNameFor(model => model.IsComplete)
+                <label class="form-check-label completed-label">
+                    <input class="form-check-input completed-checkbox" asp-for="IsComplete" />
+                    <span class="custom-checkmark"></span>
+                    Completed
                 </label>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <!-- Save Button -->
+            <div class="d-flex gap-3 mt-3">
+                <input type="submit" value="Save Changes" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-secondary">Back to Task List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        const moodButtons = document.querySelectorAll(".mood-option");
+        const moodInput = document.getElementById("selectedMood");
+
+        // Set the active mood button on page load
+        const activeMood = moodInput.value;
+        moodButtons.forEach(button => {
+            if (button.getAttribute("data-mood") === activeMood) {
+                button.classList.add("active");
+            }
+        });
+
+        // Update the hidden input when a mood button is clicked
+        moodButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                moodButtons.forEach(b => b.classList.remove("active"));
+                button.classList.add("active");
+                moodInput.value = button.getAttribute("data-mood");
+            });
+        });
+    </script>
 }

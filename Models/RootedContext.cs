@@ -19,6 +19,5 @@ namespace RootedWeb.Models
         public DbSet<TreePlanting> TreePlantings { get; set; }
 
 
-
     }
 }

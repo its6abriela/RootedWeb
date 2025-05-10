@@ -1,37 +1,79 @@
 ﻿@model RootedWeb.Models.TaskItem
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Task Details";
 }
 
-<h1>Details</h1>
+<h4>Task Details</h4>
+<hr />
 
-<div>
-    <h4>TaskItem</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mood)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mood)
-        </dd>
-        
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsComplete)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsComplete)
-        </dd>
-    </dl>
+<div class="card mb-4">
+    <div class="card-body">
+        <h3 class="card-title">@Model.Title</h3>
+
+        <!-- Mood and Emoji -->
+        <p class="card-text">
+            <strong>Mood:</strong>
+            <span style="font-size: 1.5rem;">
+                @{
+                    string emoji = Model.Mood switch
+                    {
+                        "Energetic" => "⚡",
+                        "Excited" => "🤩",
+                        "Proud" => "🏆",
+                        "Inspired" => "✨",
+                        "Motivated" => "🔥",
+                        "Happy" => "😊",
+                        "Content" => "🙂",
+                        "Hopeful" => "🌱",
+                        "Focused" => "🎯",
+                        "Calm" => "😌",
+                        "Tired" => "😴",
+                        "Meh" => "😐",
+                        "Anxious" => "😟",
+                        "Frustrated" => "😤",
+                        "Angry" => "😠",
+                        "Sad" => "😢",
+                        "Awful" => "🤢",
+                        _ => "📝"
+                    };
+                }
+                @emoji @Model.Mood
+            </span>
+        </p>
+
+        <!-- Completion Status -->
+        <p class="card-text">
+            <strong>Status:</strong>
+            @if (Model.IsComplete)
+            {
+                <span class="badge bg-success">Completed</span>
+            }
+            else
+            {
+                <span class="badge bg-warning">In Progress</span>
+            }
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="d-flex gap-3">
+            <a asp-action="Edit" asp-route-id="@Model.TaskID" class="btn btn-primary">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.TaskID" class="btn btn-danger">Delete</a>
+
+            @if (!Model.IsComplete)
+            {
+                <form asp-action="Complete" asp-route-id="@Model.TaskID" method="post" style="display:inline">
+                    <button type="submit" class="btn btn-success">Mark Complete</button>
+                </form>
+            }
+            else
+            {
+                <form asp-action="UndoComplete" asp-route-id="@Model.TaskID" method="post" style="display:inline">
+                    <button type="submit" class="btn btn-warning">Undo Complete</button>
+                </form>
+            }
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.TaskID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<a asp-action="Index" class="btn btn-outline-secondary">Back to Task List</a>

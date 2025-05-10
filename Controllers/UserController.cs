@@ -32,7 +32,7 @@ namespace RootedWeb.Controllers
                 Name = name,
                 Email = email,
                 Username = username,
-                Password = password // 🔥 Save password directly (no hashing)
+                Password = HashPassword(password) //  Hash the password before its svaes
             };
 
             _context.Users.Add(newUser);
@@ -56,10 +56,9 @@ namespace RootedWeb.Controllers
         {
             Console.WriteLine($"Typed password: {password}");
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
 
-            if (user == null)
+            if (user == null || user.Password != HashPassword(password))
             {
                 Console.WriteLine("❌ Invalid login attempt.");
                 ModelState.AddModelError("", "Invalid username or password.");
@@ -80,7 +79,7 @@ namespace RootedWeb.Controllers
             return RedirectToAction("Login");
         }
 
-        // You can keep HashPassword here if you want, but it is no longer used
+        // hash password method
         private string HashPassword(string password)
         {
             using (var sha256 = System.Security.Cryptography.SHA256.Create())

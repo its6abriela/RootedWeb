@@ -24,15 +24,24 @@
             <input type="hidden" id="selectedMood" name="mood" />
 
             @foreach (var mood in new[] {
-            new { Name = "Awful", Emoji = "🤢" },
-            new { Name = "Angry", Emoji = "😠" },
-            new { Name = "Anxious", Emoji = "😟" },
-            new { Name = "Meh", Emoji = "😐" },
-            new { Name = "Tired", Emoji = "😴" },
-            new { Name = "Calm", Emoji = "😌" },
+            new { Name = "Energetic", Emoji = "⚡" },
+            new { Name = "Excited", Emoji = "🤩" },
+            new { Name = "Proud", Emoji = "🏆" },
+            new { Name = "Inspired", Emoji = "✨" },
+            new { Name = "Motivated", Emoji = "🔥" },
             new { Name = "Happy", Emoji = "😊" },
+            new { Name = "Content", Emoji = "🙂" },
+            new { Name = "Hopeful", Emoji = "🌱" },
             new { Name = "Focused", Emoji = "🎯" },
-            new { Name = "Energetic", Emoji = "⚡" }
+            new { Name = "Calm", Emoji = "😌" },
+            new { Name = "Tired", Emoji = "😴" },
+            new { Name = "Meh", Emoji = "😐" },
+            new { Name = "Anxious", Emoji = "😟" },
+            new { Name = "Frustrated", Emoji = "😤" },
+            new { Name = "Angry", Emoji = "😠" },
+            new { Name = "Sad", Emoji = "😢" },
+            new { Name = "Awful", Emoji = "🤢" }
+
             })
             {
                 <button type="button" class="btn btn-outline-primary mood-option"

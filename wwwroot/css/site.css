@@ -8,7 +8,7 @@ html, body {
     background-attachment: fixed;
     background-size: cover;
     color: #2b2b2b;
-    margin-bottom: 100px; /* makes space for sticky footer */
+    padding-bottom: 150px;
 }
 
 /* Welcome Text */
@@ -158,6 +158,119 @@ html, body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Custom Checkbox Styling */
+.completed-label {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #4CAF50;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.completed-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkmark {
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+    .custom-checkmark::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 0;
+        width: 10px;
+        height: 18px;
+        border: solid white;
+        border-width: 0 4px 4px 0;
+        transform: rotate(45deg);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+/* When the checkbox is checked */
+.completed-checkbox:checked + .custom-checkmark {
+    background-color: #4CAF50;
+}
+
+    .completed-checkbox:checked + .custom-checkmark::after {
+        opacity: 1;
+    }
+
+/* Task Details Card */
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Badge Styling */
+.badge {
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 18px;
+}
+
+.badge-warning {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.badge-success {
+    background-color: #4CAF50;
+    color: white;
+}
+/*  Delete Confirmation Card */
+.delete-confirmation-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .delete-confirmation-card h3 {
+        font-size: 2rem;
+        color: #d9534f;
+        margin-bottom: 20px;
+    }
+
+    .delete-confirmation-card p {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+
+
 /* Sticky Footer */
 .sticky-footer {
     position: fixed;
@@ -167,8 +280,10 @@ html, body {
     background-color: transparent;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 5px 0; /* Reduced padding */
     z-index: 1000;
+    font-size: 0.9rem; 
+    line-height: 1.2; 
 }
 
 .footer-grass p {
@@ -323,3 +438,15 @@ body.history-page {
         transform: rotate(5deg);
     }
 }
+
+/* 🌱 Global Bottom Padding for All Pages */
+body {
+    padding-bottom: 150px; /* Adjust */
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #e8f5e9, #b9f6ca);
+    background-attachment: fixed;
+    background-size: cover;
+    color: #2b2b2b;
+}
+
