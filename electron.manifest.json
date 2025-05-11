@@ -1,0 +1,29 @@
+{
+  "executable": "RootedApp",
+  "name": "Rooted",
+  "version": "1.0.0",
+  "description": "A mood-based task management app",
+  "author": "Gabriela",
+  "main": "Program.cs",
+  "build": {
+    "appId": "com.rooted.app",
+    "productName": "Rooted",
+    "copyright": "Copyright © 2025 Gabriela",
+    "directories": {
+      "output": "bin/desktop"
+    }
+  },
+  "windows": {
+    "icon": "wwwroot/icons/icon-512.png",
+    "width": 1200,
+    "height": 800,
+    "autoHideMenuBar": true,
+    "backgroundColor": "#e8f5e9"
+  },
+  "mac": {
+    "icon": "wwwroot/icons/icon-512.png"
+  },
+  "linux": {
+    "icon": "wwwroot/icons/icon-512.png"
+  }
+}

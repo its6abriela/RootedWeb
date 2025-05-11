@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RootedWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f66ad0e0e37204f27e272000168faf36d0bf1c2d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94d62c1428c05bc655aaba224ed712d5e9b1400f")]
 [assembly: System.Reflection.AssemblyProductAttribute("RootedWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RootedWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
